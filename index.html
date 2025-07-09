@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>献给亲爱的妈妈 - 50岁生日快乐</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "楷体", sans-serif;
+        }
+        
+        body {
+            background-color: #fff5f5;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* 装饰元素 - 漂浮爱心 */
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            animation: float 15s linear infinite;
+            opacity: 0.6;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* 导航栏 */
+        nav {
+            background-color: rgba(255, 255, 255, 0.8);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 2px dashed #e75480;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 15px 0;
+        }
+        
+        nav ul li {
+            margin: 0 20px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #e75480;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: #c71585;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #e75480;
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* 头部区域 */
+        header {
+            height: 100vh;
+            background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('https://images.unsplash.com/photo-1519692933481-e162a57d6721?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "❤";
+            position: absolute;
+            font-size: 10rem;
+            color: rgba(231, 84, 128, 0.1);
+            top: 10%;
+            right: 10%;
+            z-index: 0;
+        }
+        
+        header::after {
+            content: "50";
+            position: absolute;
+            font-size: 15rem;
+            color: rgba(231, 84, 128, 0.05);
+            bottom: 5%;
+            left: 5%;
+            z-index: 0;
+            font-weight: bold;
+        }
+        
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #e75480;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 2s;
+            position: relative;
+            z-index: 1;
+            font-family: "楷体", serif;
+        }
+        
+        header p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin-bottom: 30px;
+            animation: fadeIn 3s;
+            position: relative;
+            z-index: 1;
+            font-family: "楷体", serif;
+        }
+        
+        /* 装饰元素 - 头部小爱心 */
+        .header-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        /* 关于妈妈 */
+        section {
+            padding: 100px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        section h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+            color: #e75480;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        section h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: #e75480;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .about-mom {
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(231, 84, 128, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-mom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #e75480, #ffc0cb);
+        }
+        
+        .about-mom p {
+            margin-bottom: 20px;
+            text-indent: 2em;
+            line-height: 1.8;
+            text-align: justify;
+            font-size: 1.1rem;
+        }
+        
+        /* 祝福语 */
+        .wishes {
+            background-color: #fff0f5;
+            position: relative;
+        }
+        
+        .wishes::before {
+            content: "祝福";
+            position: absolute;
+            font-size: 12rem;
+            color: rgba(231, 84, 128, 0.03);
+            top: 10%;
+            right: 5%;
+            z-index: 0;
+            transform: rotate(15deg);
+        }
+        
+        .wishes-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .wish-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+            max-width: 320px;
+            text-align: center;
+            border: 1px solid rgba(231, 84, 128, 0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .wish-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .wish-card::before {
+            content: "♥";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            color: #e75480;
+        }
+        
+        .wish-card p {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .wish-card p:last-child {
+            font-style: normal;
+            font-size: 1rem;
+            color: #e75480;
+            font-weight: bold;
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: #e75480;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: "母亲节快乐";
+            position: absolute;
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.05);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+        
+        footer p {
+            position: relative;
+            z-index: 1;
+            font-size: 1.1rem;
+        }
+        
+        footer p:first-child {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        /* 动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            header p {
+                font-size: 1.2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            section h2 {
+                font-size: 2.2rem;
+            }
+            
+            .about-mom {
+                padding: 30px 20px;
+            }
+            
+            .wishes-container {
+                gap: 20px;
+            }
+            
+            .wish-card {
+                padding: 20px;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 装饰元素 - 漂浮爱心 -->
+    <script>
+        // 创建漂浮爱心
+        function createHearts() {
+            const body = document.querySelector('body');
+            const heartCount = 15;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                body.appendChild(heart);
+            }
+        }
+        
+        // 页面加载后创建爱心
+        window.addEventListener('load', createHearts);
+    </script>
+    
+    <!-- 导航栏 -->
+    <nav>
+        <ul>
+            <li><a href="#about">关于妈妈</a></li>
+            <li><a href="#wishes">祝福语</a></li>
+        </ul>
+    </nav>
+    
+    <!-- 头部区域 -->
+    <header>
+        <div class="header-hearts"></div>
+        <h1>亲爱的妈妈，50岁生日快乐！</h1>
+        <p>五十载春秋，半世纪芳华。感谢您一路的陪伴与付出，今天是您的特别日子，愿您永远健康美丽，幸福安康！</p>
+    </header>
+    
+    <!-- 关于妈妈 -->
+    <section id="about" class="about-mom">
+        <h2>关于妈妈</h2>
+        <p>妈妈，您是我们生命中最重要的人。五十年来，您用无私的爱和坚强的臂膀，支撑起整个家。您的智慧和善良，一直是我们学习的榜样。</p>
+        <p>记得小时候，您总是忙碌于家务，却从不抱怨。每当我们遇到困难，您总是第一个站出来给予支持和鼓励。您的坚强和乐观，让我们学会了如何面对生活的挑战。</p>
+        <p>如今，您已步入人生的黄金岁月，但您依然是那个温柔、善良、坚强的妈妈。在这个特别的日子里，我们想对您说：谢谢您，妈妈！我们爱您！</p>
+    </section>
+    
+    <!-- 祝福语 -->
+    <section id="wishes" class="wishes">
+        <h2>祝福语</h2>
+        <div class="wishes-container">
+            <div class="wish-card">
+                <p>"妈妈，愿您永远年轻美丽，健康快乐！感谢您为我们付出的一切，我们永远爱您！"</p>
+                <p>- 您的孩子</p>
+            </div>
+            <div class="wish-card">
+                <p>"五十岁的您，依然是我们心中最美的女神。愿您的生活如花般绚烂，幸福安康！"</p>
+                <p>- 全家祝福</p>
+            </div>
+            <div class="wish-card">
+                <p>"妈妈，您是我们永远的榜样。愿您在未来的日子里，享受生活的每一刻，幸福每一天！"</p>
+                <p>- 您的家人</p>
+            </div>
+            <div class="wish-card">
+                <p>"岁月如歌，母爱如诗。愿您的人生如美丽的乐章，充满欢乐与幸福！"</p>
+                <p>- 深深祝福</p>
+            </div>
+            <div class="wish-card">
+                <p>"妈妈，您的爱是我们前进的动力。愿您在未来的岁月里，平安喜乐，健康长寿！"</p>
+                <p>- 永恒的爱</p>
+            </div>
+            <div class="wish-card">
+                <p>"五十岁的您，风采依旧。愿您的生活如阳光般灿烂，如花朵般绽放！"</p>
+                <p>- 全心祝福</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 页脚 -->
+    <footer>
+        <p>献给世界上最伟大的妈妈 | 生日快乐！</p>
+        <p>&copy; 2023 家庭祝福网站</p>
+    </footer>
+</body>
+</html>
